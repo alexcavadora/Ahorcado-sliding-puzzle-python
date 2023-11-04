@@ -76,7 +76,8 @@ moniyo=['\n\n\n\n',
         '    -----\n      |\n      O\n     /|\n',
         '    -----\n      |\n      O\n     /|\\\n',
         '    -----\n      |\n      O\n     /|\\\n     /',
-        '    -----\n      |\n      O\n     /|\\\n     / \\'].reverse()
+        '    -----\n      |\n      O\n     /|\\\n     / \\']
+
 while seguir_jugando == 's':
     #escoger palabra al azar
     palabra, definicion = rn.choice(list(palabras.items()))
@@ -90,7 +91,7 @@ while seguir_jugando == 's':
     
         
     #se reinician los intentos en el nuevo juego
-    intentos = 8
+    intentos = 0
     
     #Se muestra la primera vez la palabra a adivinar
     print('Adivina la siguiente palabra, usando un caracter a la vez:')
@@ -99,17 +100,14 @@ while seguir_jugando == 's':
     print('')
     
     #condicion de derrota
-    while intentos != 0:
-        print(f'Tienes {intentos} intentos restantes.')
-        print(moniyo[intentos])
-        
+    while intentos != 8:
         #Leer el siguiente caracter, debe ser longitud 1 para que no haga trampas
         while(len(caracter) != 1):
             caracter = input('Introduce la siguiente letra: ').lower()
        
         #
         if caracter not in palabra_limpia:
-            intentos -= 1
+            intentos += 1
         else:
            letras_ingresadas += caracter
            
@@ -122,11 +120,12 @@ while seguir_jugando == 's':
                 print('_', end = ' ')
                 
         print('')
-        
+        print(moniyo[intentos])
         if set(letras_ingresadas) == set(palabra_limpia):
             print(f'Felicitaciones, has ganado. La palabra era {palabra}. \nSe puede definir como: {definicion}')
             break
     else:
         print(f'Lo siento, te has quedado sin intentos, la palabra era {palabra}')
+        print(moniyo[intentos])
     seguir_jugando = input('Desea seguir jugando? (s/n): ').lower()
     
