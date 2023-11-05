@@ -69,14 +69,14 @@ palabras = {
 seguir_jugando = 's'
 caracter = '  '
 moniyo=['\n\n\n\n',
-        '    -----\n\n\n\n',
-        '    -----\n      |\n\n\n',
-        '    -----\n      |\n      O\n\n',
-        '    -----\n      |\n      O\n      |\n',
-        '    -----\n      |\n      O\n     /|\n',
-        '    -----\n      |\n      O\n     /|\\\n',
-        '    -----\n      |\n      O\n     /|\\\n     /',
-        '    -----\n      |\n      O\n     /|\\\n     / \\']
+        '   -----\n\n\n\n',
+        '   -----\n      |\n\n\n',
+        '   -----\n      |\n      O\n\n',
+        '   -----\n      |\n      O\n      |\n',
+        '   -----\n      |\n      O\n     /|\n',
+        '   -----\n      |\n      O\n     /|\\\n',
+        '   -----\n      |\n      O\n     /|\\\n     /',
+        '   -----\n      |\n      O\n     /|\\\n     / \\']
 
 while seguir_jugando == 's':
     #escoger palabra al azar
@@ -97,7 +97,7 @@ while seguir_jugando == 's':
     print('Adivina la siguiente palabra, usando un caracter a la vez:')
     for i in palabra:
         print('_', end=' ')
-    print('')
+    print('\n')
     
     #condicion de derrota
     while intentos != 8:
@@ -105,7 +105,7 @@ while seguir_jugando == 's':
         while(len(caracter) != 1):
             caracter = input('Introduce la siguiente letra: ').lower()
        
-        #
+        #detectar si le atinó a la letra o no
         if caracter not in palabra_limpia:
             intentos += 1
         else:
@@ -113,19 +113,20 @@ while seguir_jugando == 's':
            
         caracter = '  '
         
+        #imprimir las letras adivinadas o en su defecto un guión
         for i in range(len(palabra_limpia)):
             if palabra_limpia[i] in letras_ingresadas:
                 print(palabra[i], end = ' ')
             else:
                 print('_', end = ' ')
                 
-        print('')
-        print(moniyo[intentos])
+        print('\n\n', moniyo[intentos], '\n')
         if set(letras_ingresadas) == set(palabra_limpia):
-            print(f'Felicitaciones, has ganado. La palabra era {palabra}. \nSe puede definir como: {definicion}')
+            print(f'¡Felicitaciones!, has ganado. La palabra era: {palabra}. \nSe puede definir como: {definicion}')
             break
     else:
-        print(f'Lo siento, te has quedado sin intentos, la palabra era {palabra}')
-        print(moniyo[intentos])
-    seguir_jugando = input('Desea seguir jugando? (s/n): ').lower()
+        print(f'Lo siento, te has quedado sin intentos, la palabra era {palabra}.')
+    seguir_jugando = ''
+    while seguir_jugando != 's' or seguir_jugando != 'n':
+        seguir_jugando = input('\n¿Desea seguir jugando? (s/n): ').lower()
     
