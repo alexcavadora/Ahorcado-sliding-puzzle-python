@@ -42,6 +42,7 @@ Created on Sat Nov  4 12:12:08 2023
     correcta y desplegar la letra correspondiente.
 """
 import random as rn
+
 palabras = {
     'Reflexión': 'Acción y efecto de reflejar o reflejarse',
     'Alejandro': 'Nombre del autor de este código',
@@ -96,7 +97,7 @@ while seguir_jugando == 's':
     #Se muestra la primera vez la palabra a adivinar
     print('Adivina la siguiente palabra, usando un caracter a la vez:')
     for i in palabra:
-        print('_', end=' ')
+        print('_', end=' ') #end, nos permte cambiar el final que usualmente es una nueva linea por un espacio
     print('\n')
     
     #condicion de derrota
@@ -119,14 +120,19 @@ while seguir_jugando == 's':
                 print(palabra[i], end = ' ')
             else:
                 print('_', end = ' ')
-                
+        
+        #imprime un monito en base a un arreglo de sus 'imágenes'
         print('\n\n', moniyo[intentos], '\n')
+        
+        #en caso de lograr ganar se muestra victoria
         if set(letras_ingresadas) == set(palabra_limpia):
             print(f'¡Felicitaciones!, has ganado. La palabra era: {palabra}. \nSe puede definir como: {definicion}')
             break
     else:
+        #mensaje de derrota
         print(f'Lo siento, te has quedado sin intentos, la palabra era {palabra}.')
     seguir_jugando = ''
-    while seguir_jugando != 's' or seguir_jugando != 'n':
+    
+    while seguir_jugando != 's' and seguir_jugando != 'n':
         seguir_jugando = input('\n¿Desea seguir jugando? (s/n): ').lower()
     
